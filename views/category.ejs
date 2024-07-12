@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= category%></title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+  <h1><%= category%></h1>
+
+  <% menuItems.forEach(dish => { %>    
+    <p><%= dish.name %> <% if (dish.rating === 5) { %>
+        ⭐️
+    <% } %></p>
+    <p><%= dish.details %></p>
+    <p>Price: <%= dish.price %>, Rating: <%= dish.rating %></p><br />
+  <% }) %>
+  <p>Dishes with a ⭐️ next to the name are guest favorites</p>
+</body>
+</html>

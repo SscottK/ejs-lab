@@ -58,7 +58,28 @@ app.get('/', (req, res) => {
 });
 
 app.get('/menu', (req, res) => {
-    res.render('menu.ejs')
+    res.render('menu.ejs', {
+        restaurant: RESTAURANT
+    })
+})
+
+// used the example here for the level up content
+//https://www.freecodecamp.org/news/javascript-capitalize-first-letter-of-word/
+app.get('/menu/:category', (req, res) => {
+    const menuItems = []
+    const category = req.params.category
+    const upperCategory = category.charAt(0).toUpperCase() + category.slice(1)
+    RESTAURANT.menu.forEach((dish) => {
+        if (dish.category === category) {
+            menuItems.push(dish)
+        }
+    })
+
+    
+    res.render('category.ejs', {
+       menuItems: menuItems,
+       category: upperCategory
+    })
 })
 
 app.listen(3000);
